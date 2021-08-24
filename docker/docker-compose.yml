@@ -1,0 +1,22 @@
+version: '3.2'
+
+volumes:
+  simple-app-postgres:
+    driver: local
+
+services:
+  postgres:
+    image: postgres:9.6
+    container_name: simple-app-postgres
+    volumes:
+      - type: volume
+        source: simple-app-postgres
+        target: /var/lib/postgresql/dataConfig
+    environment:
+      POSTGRES_DB: simple-app
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespass
+    ports:
+      - "5432:5432"
+
+# jdbc:postgresql://localhost:5432/simple-app
